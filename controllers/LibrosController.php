@@ -1,44 +1,33 @@
 <?php
 
-  require_once('models/libro/Libro.php');
-  require_once('models/autor/Autor.php');
-  require_once('models/editorial/Editorial.php');
+  // require_once('models/libro/Libro.php');
+  // require_once('models/autor/Autor.php');
+  // require_once('models/editorial/Editorial.php');
 
   class LibrosController extends Controller {
-
-    static $libros_m = [
-      ['id' => '1', 'title' => 'Operating System Concepts', 'edition' => '9th', 'copyright' => '2010', 'language' => 'ENGLISH', 'pages' => '976', 'author' => 'Abraham Silberschatz', 'author_id' => '1', 'publisher' => 'John Wiley & Sons', 'publisher_id' => '1'],
-      ['id' => '2', 'title' => 'Database System Concepts', 'edition' => '6th', 'copyright' => '2010', 'language' => 'ENGLISH', 'pages' => '1376', 'author' => 'Abraham Silberschatz', 'author_id' => '1', 'publisher' => 'John Wiley & Sons', 'publisher_id' => '1'],
-      ['id' => '3', 'title' => 'Computer Networks', 'edition' => '5th', 'copyright' => '2010', 'language' => 'ENGLISH', 'pages' => '960', 'author' => 'Andrew S. Tanenbaum', 'author_id' => '2', 'publisher' => 'John Wiley & Sons', 'publisher_id' => '2'],
-      ['id' => '4', 'title' => 'Modern Operating Systems', 'edition' => '4th', 'copyright' => '2010', 'language' => 'ENGLISH', 'pages' => '1136', 'author' => 'Andrew S. Tanenbaum', 'author_id' => '2', 'publisher' => 'John Wiley & Sons', 'publisher_id' => '2'],
-    ];
     
     public function index() {      
       // $libro_m = Libro::all();
 
-      $libro_m = Libro::all();
+      $libro_m = DB::table('libros')->get();
 
       return view('Libros/Libros', ['libros_m' => $libro_m]); 
       //echo 'Hello, World!';
     }
 
     public function show($id) { 
-      $libro_m = Libro::find($id);
-      $autor_m = Autor::where('id',$libro_m[0]["author_id"]);
-      $editorial_m = Editorial::where('id',$libro_m[0]["publisher_id"]);
+      $libro_m = DB::table('libros')->where('id',$id)->first();
+      $autor_m = DB::table('autores')->where('id',$libro_m[0]['author_id'])->get();
+      $editorial_m = DB::table('editoriales')->where('id',$libro_m[0]["publisher_id"])->get();
       
       return view('Libros/Muestra', ['Libro_m' => $libro_m, 'Autor_m' => $autor_m, 'Editorial_m' => $editorial_m, 'edit' => false, 'disabled' => 'disabled']);
     }
 
     public function edit($id) {
-      $libro_m = Libro::find($id);
-      $authores_m = Autor::all();
-      $editorials_m = Editorial::all();
-      // echo "<pre>";
-      // var_dump($editorials_m);
-      // echo "</pre>";
-      // die();
-      
+      $libro_m = DB::table('libros')->where('id',$id)->first();
+      $authores_m = DB::table('autores')->get();
+      $editorials_m = DB::table('editoriales')->get();
+            
       return view('Libros/Edita', ['Libro_m' => $libro_m, 'authores_m' => $authores_m, 'editorials_m' => $editorials_m]);
     }
 
@@ -55,15 +44,15 @@
       $item = ['title' => $title, 'edition' => $edition, 'copyright' => $copyright, 'language' => $language, 
               'pages' => $pages, 'author_id' => $author_id, 'publisher_id' => $publisher_id];
 
-      Libro::update($id,$item);
+      DB::table('libros')->update($id,$item);
      
       return redirect('/libros');
 
     }
 
     public function create() { 
-      $authores_m = Autor::all();
-      $editorials_m = Editorial::all();
+      $authores_m = DB::table('autores')->get();
+      $editorials_m = DB::table('editoriales')->get();
 
       return view('Libros/Crea', ['authores_m' => $authores_m, 'editorials_m' => $editorials_m]);
     }
@@ -80,12 +69,8 @@
 
       $item = ['title' => $title, 'edition' => $edition, 'copyright' => $copyright, 'language' => $language, 
               'pages' => $pages, 'author_id' => $author_id, 'publisher_id' => $publisher_id];
-      //  echo "<pre>";
-      // var_dump($item);
-      // echo "</pre>";
-      // die();
 
-      Libro::create($item);
+      DB::table('libros')->insert($item);
      
       return redirect('/libros');      
     }
