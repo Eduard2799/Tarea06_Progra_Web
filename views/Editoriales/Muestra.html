@@ -40,56 +40,61 @@
     </nav>
     <br><br>
     <div class="container">
-        <form>
-            {{#editorial_m}}
-            <fieldset disabled>
-                <div class="row">
-                    <div class="col-6 col-sm-3">
-                        <legend>Publisher</legend>
-                        <div class="mb-3">
-                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input" value="{{publisher}}">
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-3">
-                        <legend>Country</legend>
-                        <div class="mb-3">
-                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input" value="{{country}}">
-                        </div>
-                    </div>
-                </div>
+        {{#muestra}}
+        <form>{{/muestra}} {{#Editorial_m}} {{#crea}}
+            <form action="/editoriales" method="POST">
+                {{/crea}} {{#edita}}
+                <form action="/editoriales/{{id}}" method="POST">
+                    <input type="hidden" name="_method" value="PUT"> {{/edita}}
 
-                <div class="row">
-                    <div class="col-6 col-sm-3">
-                        <legend>Founded</legend>
-                        <div class="mb-3">
-                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input" value="{{founded}}">
+                    <fieldset {{#disabled}}disabled{{/disabled}}>
+                        <div class="row">
+                            <div class="col-6 col-sm-3">
+                                <legend>Publisher</legend>
+                                <div class="mb-3">
+                                    <input type="text" name="publisher" id="disabledTextInput" class="form-control" placeholder="" value="{{publisher}}">
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-3">
+                                <legend>Country</legend>
+                                <div class="mb-3">
+                                    <input type="text" name="country" id="disabledTextInput" class="form-control" placeholder="" value="{{country}}">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-6 col-sm-3">
-                        <legend>Genere</legend>
-                        <div class="mb-3">
-                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input" value="{{genere}}">
+
+                        <div class="row">
+                            <div class="col-6 col-sm-3">
+                                <legend>Founded</legend>
+                                <div class="mb-3">
+                                    <input type="text" name="founded" id="disabledTextInput" class="form-control" placeholder="" value="{{founded}}">
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-3">
+                                <legend>Genere</legend>
+                                <div class="mb-3">
+                                    <input type="text" name="genere" id="disabledTextInput" class="form-control" placeholder="" value="{{genere}}">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <legend>Libros</legend>
-                    {{#libros_m}}
-                    <div class="col-6 col-sm-3">
-                        <div class="mb-3">
-                            <p class="form-control">
-                                <a href="/libros/{{id}}">{{title}}</a>
-                            </p>
+                        {{/Editorial_m}}
+                        <div class="row">
+                            {{#muestra}}
+                            <legend>Libros</legend>
+                            {{#libros_m}}
+                            <div class="col-6 col-sm-3">
+                                <div class="mb-3">
+                                    <p class="form-control">
+                                        <a href="/libros/{{id}}">{{title}}</a>
+                                    </p>
+                                </div>
+                            </div>
+                            {{/libros_m}} {{/muestra}}
                         </div>
-                    </div>
-                    {{/libros_m}}
-
-
-                </div>
-            </fieldset>
-            {{/editorial_m}}
-        </form>
+                    </fieldset>
+                    {{^muestra}}
+                    <input type="submit" class="btn btn-success btn-lg" value="Save"> {{~muestra}}
+                </form>
     </div>
 </body>
 

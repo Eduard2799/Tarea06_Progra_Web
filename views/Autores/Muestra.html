@@ -41,56 +41,61 @@
     </nav>
     <br><br>
     <div class="container">
-        <form>
-            {{#autor_m}}
-            <fieldset disabled>
-                <div class="row">
-                    <div class="col-6 col-sm-3">
-                        <legend>Author</legend>
-                        <div class="mb-3">
-                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input" value="{{author}}">
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-3">
-                        <legend>Nationality</legend>
-                        <div class="mb-3">
-                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input" value="{{nationality}}">
-                        </div>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-6 col-sm-3">
-                        <legend>Birth year</legend>
-                        <div class="mb-3">
-                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input" value="{{birth_year}}">
+        {{#muestra}}
+        <form>{{/muestra}} {{#autor_m}} {{#crea}}
+            <form action="/autores" method="POST">
+                {{/crea}} {{#edita}}
+                <form action="/autores/{{id}}" method="POST">
+                    <input type="hidden" name="_method" value="PUT"> {{/edita}}
+                    <fieldset {{#disabled}}disabled{{/disabled}}>
+                        <div class="row">
+                            <div class="col-6 col-sm-3">
+                                <legend>Author</legend>
+                                <div class="mb-3">
+                                    <input type="text" id="" name="author" class="form-control" placeholder="" value="{{author}}">
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-3">
+                                <legend>Nationality</legend>
+                                <div class="mb-3">
+                                    <input type="text" id="" name="nationality" class="form-control" placeholder="" value="{{nationality}}">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-6 col-sm-3">
-                        <legend>Fields</legend>
-                        <div class="mb-3">
-                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input" value="{{fields}}">
+
+                        <div class="row">
+                            <div class="col-6 col-sm-3">
+                                <legend>Birth year</legend>
+                                <div class="mb-3">
+                                    <input type="text" id="" name="birth_year" class="form-control" placeholder="" value="{{birth_year}}">
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-3">
+                                <legend>Fields</legend>
+                                <div class="mb-3">
+                                    <input type="text" id="" name="fields" class="form-control" placeholder="" value="{{fields}}">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <legend>Libros</legend>
-                    {{#libros_m}}
-                    <div class="col-6 col-sm-3">
-                        <div class="mb-3">
-                            <p class="form-control">
-                                <a href="/libros/{{id}}">{{title}}</a>
-                            </p>
+                        {{/autor_m}} {{#muestra}}
+                        <div class="row">
+                            <legend>Libros</legend>
+                            {{#libros_m}}
+                            <div class="col-6 col-sm-3">
+                                <div class="mb-3">
+                                    <p class="form-control">
+                                        <a href="/libros/{{id}}">{{title}}</a>
+                                    </p>
+                                </div>
+                            </div>
+                            {{/libros_m}}
                         </div>
-                    </div>
-                    {{/libros_m}}
-
-
-                </div>
-            </fieldset>
-            {{/autor_m}}
-        </form>
+                        {{/muestra}}
+                    </fieldset>
+                    {{^muestra}}
+                    <input type="submit" class="btn btn-success btn-lg" value="Save"> {{~muestra}}
+                </form>
     </div>
 </body>
 

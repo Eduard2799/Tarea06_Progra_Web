@@ -11,15 +11,15 @@
 
     public function show($id) { 
       $editorial_m = DB::table('editoriales')->where('id',$id)->first();
-      $libs_edit = DB::table('libros')->where('id',$editorial_m[0]['publisher_id'])->get();
+      $libs_edit = DB::table('libros')->where('publisher_id',$editorial_m[0]['id'])->get();
       
-      return view('Editoriales/Muestra', ['editorial_m' => $editorial_m, 'libros_m' => $libs_edit]);
+      return view('Editoriales/Muestra', ['Editorial_m' => $editorial_m, 'libros_m' => $libs_edit, 'edita' => false, 'muestra' => true, 'crea' => false, 'disabled' => true]);
     }
 
     public function edit($id) {
       $editorial_m = DB::table('editoriales')->where('id',$id)->first();
       
-      return view('Editoriales/Edita', ['Editorial_m' => $editorial_m]);
+      return view('Editoriales/Muestra', ['Editorial_m' => $editorial_m, 'edita' => true, 'muestra' => false, 'crea' => false, 'disabled' => '', 'libros_m' => false]);
     }
 
     public function update($_,$id) {
@@ -30,7 +30,7 @@
       $genere = Input::get('genere');
 
       $item = ['publisher' => $publisher, 'country' => $country, 'founded' => $founded, 'genere' => $genere];
-
+      
       DB::table('editoriales')->update($id,$item);
      
       return redirect('/editoriales');
@@ -38,7 +38,8 @@
     }
 
     public function create() { 
-      return view('Editoriales/Crea');
+      $item = ['publisher' => '', 'country' => '', 'founded' => '', 'genere' => ''];
+      return view('Editoriales/Muestra', ['Editorial_m' => $item, 'edita' => false, 'muestra' => false, 'crea' => true, 'disabled' => '',  'libros_m' => false]);
     }
 
     public function store()

@@ -41,70 +41,111 @@
     </nav>
     <br><br>
     <div class="container">
-        {{#Libro_m}} {{#edit}}
-        <form action="/libros/{{id}}" method="POST">
-            <input type="hidden" name="_method" value="PUT"> {{/edit}}
-            <fieldset disabled>
-                <div class="row">
-                    <div class="col-6 col-sm-3">
-                        <legend>Title</legend>
-                        <div class="mb-3">
-                            <input type="text" id="" class="form-control" placeholder="" value="{{title}}">
+        {{#muestra}}
+        <form>{{/muestra}} {{#Libro_m}} {{#crea}}
+            <form action="/libros" method="POST">
+                {{/crea}} {{#edita}}
+                <form action="/libros/{{id}}" method="POST">
+                    <input type="hidden" name="_method" value="PUT"> {{/edita}}
+                    <fieldset {{#disabled}}disabled{{/disabled}}>
+                        <div class="row">
+                            <div class="col-6 col-sm-3">
+                                <legend>Title</legend>
+                                <div class="mb-3">
+                                    <input type="text" id="" name="title" class="form-control" placeholder="" value="{{title}}">
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-3">
+                                <legend>Edition</legend>
+                                <div class="mb-3">
+                                    <input type="text" id="" name="edition" class="form-control" placeholder="" value="{{edition}}">
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-3">
+                                <legend>Copyright</legend>
+                                <div class="mb-3">
+                                    <input type="text" id="" name="copyright" class="form-control" placeholder="" value="{{copyright}}">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-6 col-sm-3">
-                        <legend>Edition</legend>
-                        <div class="mb-3">
-                            <input type="text" id="" class="form-control" placeholder="" value="{{edition}}">
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-3">
-                        <legend>Copyright</legend>
-                        <div class="mb-3">
-                            <input type="text" id="" class="form-control" placeholder="" value="{{copyright}}">
-                        </div>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-6 col-sm-3">
-                        <legend>Language</legend>
-                        <div class="mb-3">
-                            <input type="text" id="" class="form-control" placeholder="" value="{{language}}">
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-3">
-                        <legend>Pages</legend>
-                        <div class="mb-3">
-                            <input type="text" id="" class="form-control" placeholder="" value="{{pages}}">
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-3">
-                        <legend>Author</legend>
-                        {{#Autor_m}}
-                        <div class="mb-3">
-                            <p class="form-control"><a href="/autores/{{author_id}}">{{author}}</a></p>
-                        </div>
-                        {{/Autor_m}}
-                    </div>
-                </div>
+                        <div class="row">
+                            <div class="col-6 col-sm-3">
+                                <legend>Language</legend>
+                                <div class="mb-3">
+                                    <input type="text" id="" name="language" class="form-control" placeholder="" value="{{language}}">
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-3">
+                                <legend>Pages</legend>
+                                <div class="mb-3">
+                                    <input type="text" id="" name="pages" class="form-control" placeholder="" value="{{pages}}">
+                                </div>
+                            </div>
+                            {{^muestra}}
+                            <input type="hidden" id="input_id_author" value="{{author_id}}">
+                            <input type="hidden" id="input_id_publisher" value="{{publisher_id}}"> {{/Libro_m}}
+                            <div class="col-6 col-sm-3">
+                                <legend>Author</legend>
+                                <div class="mb-3">
+                                    <select class="form-control" name="author_id" id="select_author">
+                                {{#authores_m}}
+                                <option value="{{id}}">{{author}}</option>
+                                {{/authores_m}}
+                            </select>
+                                </div>
+                            </div>
+                            {{~muestra}} {{#muestra}}
 
-                <div class="row">
-                    <div class="col-6 col-sm-3">
-                        <legend>Publisher</legend>
-                        {{#Editorial_m}}
-                        <div class="mb-3" name="publisher_id">
-                            <p class="form-control"><a href="/editoriales/{{publisher_id}}">{{publisher}}</a></p>
+                            <div class="col-6 col-sm-3">
+                                <legend>Author</legend>
+                                {{#Autor_m}}
+                                <div class="mb-3">
+                                    <p class="form-control"><a href="/autores/{{id}}">{{author}}</a></p>
+                                </div>
+                                {{/Autor_m}}
+                            </div>
                         </div>
-                        {{/Editorial_m}}
-                    </div>
-                </div>
-            </fieldset>
-            {{/Libro_m}} {{#edit}}
-            <input type="submit" value="Save" class="btn btn-success">
-        </form>
-        {{/edit}}
+                        <!-- {{/Libro_m}} -->
+                        <div class="row">
+                            <div class="col-6 col-sm-3">
+                                <legend>Publisher</legend>
+                                {{#Editorial_m}}
+                                <div class="mb-3" name="publisher_id">
+                                    <p class="form-control"><a href="/editoriales/{{id}}">{{publisher}}</a></p>
+                                </div>
+                                {{/Editorial_m}}
+                            </div>
+                            {{/muestra}}
+                        </div>
+                        {{^muestra}}
+                        <div class="row">
+                            <div class="col-6 col-sm-3">
+                                <legend>Publisher</legend>
+                                <div class="mb-3" name="">
+                                    <select class="form-control" name="publisher_id" id="select_publisher">
+                                    {{#editorials_m}}
+                                    <option value="{{id}}">{{publisher}}</option>
+                                    {{/editorials_m}}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        {{~muestra}}
+                    </fieldset>
+                    {{^muestra}}
+                    <input type="submit" class="btn btn-success btn-lg" value="Save"> {{~muestra}}
+                </form>
     </div>
 </body>
+<script>
+    $(document).ready(function() {
+        var id_author = $("#input_id_author").val()
+        $("#select_author option[value=" + id_author + "]").attr("selected", true);
+
+        var id_publisher = $("#input_id_publisher").val()
+        $("#select_publisher option[value=" + id_publisher + "]").attr("selected", true);
+    });
+</script>
 
 </html>

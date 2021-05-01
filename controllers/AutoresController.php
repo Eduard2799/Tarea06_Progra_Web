@@ -14,13 +14,13 @@
         $autor_m = DB::table('autores')->where('id',$id)->first();
         $libs_aut = DB::table('libros')->where('author_id',$autor_m[0]['id'])->get();
 
-        return view('Autores/Muestra', ['autor_m' => $autor_m, 'libros_m' => $libs_aut]);
+        return view('Autores/Muestra', ['autor_m' => $autor_m, 'libros_m' => $libs_aut, 'edita' => false, 'muestra' => true, 'crea' => false, 'disabled' => true]);
     }
 
     public function edit($id) { 
       $autor_m =  DB::table('autores')->where('id',$id)->first();
       
-      return view('Autores/Edita', ['autor_m' => $autor_m]);
+      return view('Autores/Muestra', ['autor_m' => $autor_m, 'edita' => true, 'muestra' => false, 'crea' => false, 'disabled' => false]);
     }
 
     public function update($_,$id)
