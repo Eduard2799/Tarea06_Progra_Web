@@ -6,20 +6,20 @@
   class EditorialesController extends Controller {
        
     public function index() {      
-      return view('Editoriales/Editoriales', ['editoriales_m' => DB::table('editoriales')->get()]); 
+      return view('Editoriales/Editoriales', ['login' => Auth::check(), 'editoriales_m' => DB::table('editoriales')->get()]); 
     }
 
     public function show($id) { 
       $editorial_m = DB::table('editoriales')->where('id',$id)->first();
       $libs_edit = DB::table('libros')->where('publisher_id',$editorial_m[0]['id'])->get();
       
-      return view('Editoriales/Muestra', ['Editorial_m' => $editorial_m, 'libros_m' => $libs_edit, 'edita' => false, 'muestra' => true, 'crea' => false, 'disabled' => true]);
+      return view('Editoriales/Muestra', ['login' => Auth::check(), 'Editorial_m' => $editorial_m, 'libros_m' => $libs_edit, 'edita' => false, 'muestra' => true, 'crea' => false, 'disabled' => true]);
     }
 
     public function edit($id) {
       $editorial_m = DB::table('editoriales')->where('id',$id)->first();
       
-      return view('Editoriales/Muestra', ['Editorial_m' => $editorial_m, 'edita' => true, 'muestra' => false, 'crea' => false, 'disabled' => '', 'libros_m' => false]);
+      return view('Editoriales/Muestra', ['login' => Auth::check(), 'Editorial_m' => $editorial_m, 'edita' => true, 'muestra' => false, 'crea' => false, 'disabled' => '', 'libros_m' => false]);
     }
 
     public function update($_,$id) {
@@ -33,13 +33,13 @@
       
       DB::table('editoriales')->update($id,$item);
      
-      return redirect('/editoriales');
+      return redirect('/editoriales', ['login' => Auth::check()]);
 
     }
 
     public function create() { 
       $item = ['publisher' => '', 'country' => '', 'founded' => '', 'genere' => ''];
-      return view('Editoriales/Muestra', ['Editorial_m' => $item, 'edita' => false, 'muestra' => false, 'crea' => true, 'disabled' => '',  'libros_m' => false]);
+      return view('Editoriales/Muestra', ['login' => Auth::check(), 'Editorial_m' => $item, 'edita' => false, 'muestra' => false, 'crea' => true, 'disabled' => '',  'libros_m' => false]);
     }
 
     public function store()
@@ -53,7 +53,7 @@
 
       DB::table('editoriales')->insert($item);
      
-      return redirect('/editoriales');      
+      return redirect('/editoriales', ['login' => Auth::check()]);      
     }
     
   }

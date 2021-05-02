@@ -35,6 +35,9 @@
                     </li>
                 </ul>
             </div>
+            {{#login}}
+            <a class="button" style="float: right" href="/logout" login>Logout</a> {{/login}} {{^login}}
+            <a class="button" style="float: right" href="/login" login>Login</a> {{~login}}
         </div>
     </nav>
     <div class="container text-center">

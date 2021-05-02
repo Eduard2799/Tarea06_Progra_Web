@@ -37,12 +37,17 @@
                     </div>
                 </li>
             </div>
+            {{#login}}
+            <a class="button" style="float: right" href="/logout" login>Logout</a> {{/login}} {{^login}}
+            <a class="button" style="float: right" href="/login" login>Login</a> {{~login}}
         </div>
     </nav>
     <div class="container">
+        {{#login}}
         <div style="text-align: right; margin-top: 5%;">
             <a class="btn btn-success" href="/libros/create "><i class="fa fa-plus"></i></a>
         </div>
+        {{/login}}
         <br>
         <div>
             <table class="table table-dark">
@@ -53,7 +58,8 @@
                         <th>Copyright</th>
                         <th>Language</th>
                         <th>Pages</th>
-                        <th>Editar</th>
+                        {{#login}}
+                        <th>Editar</th>{{/login}}
                     </tr>
                 </thead>
                 <tbody class="table-success">
@@ -66,8 +72,9 @@
                         <td>{{copyright}}</td>
                         <td>{{language}}</td>
                         <td>{{pages}}</td>
+                        {{#login}}
                         <td><a href="libros/{{id}}/edit"><i class="fa fa-edit"></i>
-                        </a></td>
+                        </a></td>{{/login}}
                     </tr>
                     {{/libros_m}}
                 </tbody>

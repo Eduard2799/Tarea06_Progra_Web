@@ -36,6 +36,9 @@
                     </li>
                 </ul>
             </div>
+            {{#login}}
+            <a class="button" style="float: right" href="/logout" login>Logout</a> {{/login}} {{^login}}
+            <a class="button" style="float: right" href="/login" login>Login</a> {{~login}}
         </div>
     </nav>
     <br><br>
@@ -77,11 +80,12 @@
                                 </div>
                             </div>
                         </div>
-                        {{/Editorial_m}}
+                        {{/Editorial_m}} {{#muestra}}
                         <div class="row">
-                            {{#muestra}}
                             <legend>Libros</legend>
-                            {{#libros_m}}
+                        </div>
+                        {{#libros_m}}
+                        <div class="row">
                             <div class="col-6 col-sm-3">
                                 <div class="mb-3">
                                     <p class="form-control">
@@ -89,8 +93,8 @@
                                     </p>
                                 </div>
                             </div>
-                            {{/libros_m}} {{/muestra}}
                         </div>
+                        {{/libros_m}} {{/muestra}}
                     </fieldset>
                     {{^muestra}}
                     <input type="submit" class="btn btn-success btn-lg" value="Save"> {{~muestra}}

@@ -33,10 +33,13 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/libros">Libros</a>
                         <a class="dropdown-item" href="/autores">Autores</a>
-                        <a class="dropdown-item" href="/    editoriales">Editoriales</a>
+                        <a class="dropdown-item" href="/editoriales">Editoriales</a>
                     </div>
                 </li>
             </div>
+            {{#login}}
+            <a class="button" style="float: right" href="/logout" login>Logout</a> {{/login}} {{^login}}
+            <a class="button" style="float: right" href="/login" login>Login</a> {{~login}}
         </div>
     </nav>
     <br><br>

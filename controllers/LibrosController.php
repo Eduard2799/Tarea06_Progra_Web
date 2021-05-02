@@ -11,7 +11,7 @@
 
       $libro_m = DB::table('libros')->get();
 
-      return view('Libros/Libros', ['libros_m' => $libro_m]); 
+      return view('Libros/Libros', ['libros_m' => $libro_m, 'login'=>Auth::check()]); 
       //echo 'Hello, World!';
     }
 
@@ -19,10 +19,8 @@
       $libro_m = DB::table('libros')->where('id',$id)->first();
       $autor_m = DB::table('autores')->where('id',$libro_m[0]['author_id'])->get();
       $editorial_m = DB::table('editoriales')->where('id',$libro_m[0]["publisher_id"])->get();
-      // echo "<pre>";
-      // var_dump($libro_m);
-      // echo "</pre>";
-      return view('Libros/Muestra', ['Libro_m' => $libro_m, 'Autor_m' => $autor_m, 'Editorial_m' => $editorial_m, 'edita' => false, 'muestra' => true, 'crea' => false, 'disabled' => true]);
+      
+      return view('Libros/Muestra', ['login' => Auth::check(), 'Libro_m' => $libro_m, 'Autor_m' => $autor_m, 'Editorial_m' => $editorial_m, 'edita' => false, 'muestra' => true, 'crea' => false, 'disabled' => true]);
     }
 
     public function edit($id) {
@@ -31,7 +29,7 @@
       $editorials_m = DB::table('editoriales')->get();
       
             
-      return view('Libros/Muestra', ['Libro_m' => $libro_m, 'authores_m' => $authores_m, 'edita' => true, 'muestra' => false, 'crea' => false, 'disabled' => '', 'editorials_m' => $editorials_m]);
+      return view('Libros/Muestra', ['Libro_m' => $libro_m, 'authores_m' => $authores_m, 'edita' => true, 'muestra' => false, 'crea' => false, 'disabled' => '', 'editorials_m' => $editorials_m, 'login'=>Auth::check()]);
     }
 
     public function update($_,$id) {
@@ -50,7 +48,7 @@
       echo "</pre>";
       DB::table('libros')->update($id,$item);
      
-      return redirect('/libros');
+      return redirect('/libros', ['login'=>Auth::check()]);
 
     }
 
@@ -60,7 +58,7 @@
       $item = ['title' => '', 'edition' => '', 'copyright' => '', 'language' => '', 
       'pages' => '', 'author_id' => '', 'publisher_id' => ''];
 
-      return view('Libros/Muestra', ['authores_m' => $authores_m, 'editorials_m' => $editorials_m, 'Libro_m' => $item, 'edita' => false, 'muestra' => false, 'crea' => true, 'disabled' => false]);
+      return view('Libros/Muestra', ['authores_m' => $authores_m, 'editorials_m' => $editorials_m, 'Libro_m' => $item, 'edita' => false, 'muestra' => false, 'crea' => true, 'disabled' => false, 'login'=>Auth::check()]);
     }
 
     public function store()
@@ -78,7 +76,7 @@
 
       DB::table('libros')->insert($item);
      
-      return redirect('/libros');      
+      return redirect('/libros', ['login'=>Auth::check()]);      
     }
 
   }
