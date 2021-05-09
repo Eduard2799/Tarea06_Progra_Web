@@ -1,11 +1,12 @@
 <?php
 
   // file: controllers/LoginController.php
-  require_once('models/user/userModel.php');
+  require_once('models/user/UserModel.php');
 
   class LoginController extends Controller {
 
     public function showLoginForm() {
+        // echo "Hola";
         return view('auth/login', ['error'=>false,'login'=>Auth::check()]);
     }
 
@@ -20,7 +21,7 @@
     }
 
     public function loginFails() {
-      return view('auth/login',
+      return view('Auth/login',
         ['error'=>true,'login'=>Auth::check()]);
     }
 

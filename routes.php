@@ -4,12 +4,10 @@
     Route::resource('autores', 'AutoresController');
     Route::resource('editoriales', 'EditorialesController');
 
-    Route::get('/', function () { return view('home',
-        ['title'=>'Welcome','login'=>Auth::check()]); });
 
-    Route::resource('professor', 'ProfessorController');
-    Route::get('/professor/(:number)/delete','ProfessorController@destroy');
-    Route::get('/','ProfessorController@index');
+    //Route::get('/', function () { return view('home',
+        //['title'=>'Welcome','login'=>Auth::check()]); });
+
 
     // Authentication Routes  
     Route::get('login', 'LoginController@showLoginForm');

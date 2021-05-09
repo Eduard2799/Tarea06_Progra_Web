@@ -1,12 +1,12 @@
 <?php
 
   // file: controllers/RegisterController.php  
-  require_once('models/user/UserModel.php');
+  require_once('models/user/userModel.php');
 
   class RegisterController extends Controller {
 
     public function showRegistrationForm() {
-      return view('Auth/registration',
+      return view('auth/registration',
         ['login'=>Auth::check()]); 
     }
 
