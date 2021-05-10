@@ -65,7 +65,7 @@ class AutorController {
             .then((data) => {
                 return view('/views/autor/details.html', {
                     'title': 'Autor Edit',
-                    'autor_m': data,
+                    'autor_m': data[0],
                     'edit': true
                 }, 'content')();
             })

@@ -34,7 +34,7 @@ class LibroController extends Controller {
     $authores_m = AutorModel::all();
     $editorials_m = EditorialModel::all();  
     
-    return [$libro_m,$authores_m,$editorials_m];
+    return [$libro_m,$authores_m,$editorials_m, "Hola"];
   }
 
   

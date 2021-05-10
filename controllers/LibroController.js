@@ -73,8 +73,10 @@ class LibroController {
             .then((response) => response.json())
             .then((data) => {
                 return view('/views/libro/details.html', {
-                    'title': 'libro Edit',
+                    'title': 'Libro Edit',
                     'libro_m': data[0],
+                    'autor_m': data[1],
+                    'editorial_m': data[2],
                     'edit': true
                 }, 'content')();
             })

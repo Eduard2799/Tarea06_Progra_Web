@@ -65,7 +65,7 @@ class EditorialController {
             .then((data) => {
                 return view('/views/editorial/details.html', {
                     'title': 'editorial Edit',
-                    'editorial_m': data,
+                    'editorial_m': data[0],
                     'edit': true
                 }, 'content')();
             })

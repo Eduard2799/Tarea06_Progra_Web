@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="eleven column" style="margin-top: 10%">
+    <div class="eleven column" style="margin-top:   0%">
         <h2>{{title}}</h2>
         {{#libro_m}}
         <form>
@@ -55,7 +55,7 @@
                 <div class="six columns">
                     <!-- Si es mostrar -->
                     {{#show}} {{#autor_m}}
-                    <label for="publisherInput">Author</label>
+                    <label for="authorInput">Author</label>
                     <input class="u-full-width" type="text" {{#show}} readonly {{/show}} id="author" name="author" value="{{author}}"> {{/autor_m}}{{/show}}
                     <!-- Si no es mostrar -->
                     {{^show}}
