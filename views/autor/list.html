@@ -1,0 +1,32 @@
+<div class="row">
+    <div style="margin-top: 10%">
+        <div style="text-align: right;">
+            <a class="button button-primary" href="/autor/create" data-navigo>New</a>
+        </div>
+        <h2>{{title}}</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Author</th>
+                    <th>Nationality</th>
+                    <th>Birth year</th>
+                    <th>Fields</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#autor_m}}
+                <tr>
+                    <td><a class="button" href="/autor/show/{{id}}" data-navigo>{{author}}</a></td>
+                    <td>{{nationality}}</td>
+                    <td>{{birth_year}}</td>
+                    <td>{{fields}}</td>
+                    <td>
+                        <a class="button" href="/autor/edit/{{id}}" data-navigo>Edit</a>
+                        <a class="button" href="/autor/delete/{{id}}" data-navigo>Erase</a>
+                    </td>
+                </tr>
+                {{/autor_m}}</tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="eleven column" style="margin-top: 10%">
+        <h2>{{title}}</h2>
+        {{#editorial_m}}
+        <form>
+            <div class="row">
+                <div class="six columns">
+                    <label for="publisherInput">Publisher</label>
+                    <input class="u-full-width" type="text" {{#show}} readonly {{/show}} id="publisher" name="publisher" value="{{publisher}}">
+                </div>
+                <div class="six columns">
+                    <label for="countryInput">Country</label>
+                    <input class="u-full-width" type="text" {{#show}} readonly {{/show}} id="country" name="country" value="{{country}}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="six columns">
+                    <label for="foundedInput">Founded</label>
+                    <input class="u-full-width" type="text" {{#show}} readonly {{/show}} id="founded" name="founded" value="{{founded}}">
+                </div>
+                <div class="six columns">
+                    <label for="genereInput">Genere</label>
+                    <input class="u-full-width" type="text" {{#show}} readonly {{/show}} id="genere" name="genere" value="{{genere}}">
+                </div>
+            </div>
+            {{#show}}
+            <div class="row">
+                <div class="six columns">
+                    <label for="titleInput">Books</label> {{#libro_m}}
+                    <input class="u-full-width" type="text" {{#show}} readonly {{/show}} id="title" name="title" value="{{title}}"> {{/libro_m}}
+                </div>
+            </div>
+            {{/show}}
+            <a class="button button-primary" href="/editorial" data-navigo>Back</a> {{#edit}}
+            <a class="button button-primary" style="float: right" data-navigo href="/editorial/update/{{id}}">Update</a> {{/edit}} {{#create}}
+            <input type="hidden" name="_method" value="PUT">
+            <a class="button button-primary" style="float: right" data-navigo href="/editorial/store">Create</a> {{/create}} {{/editorial_m}}
+        </form>
+    </div>
+</div>

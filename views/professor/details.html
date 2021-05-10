@@ -1,0 +1,47 @@
+  <div class="row">
+   <div class="eleven column" style="margin-top: 10%">
+    <h2>{{title}}</h2>
+     {{#professor}}
+     <form>
+     <div class="row">
+      <div class="six columns">
+       <label for="nameInput">Name</label>
+       <input class="u-full-width" type="text" 
+         {{#show}} readonly {{/show}}
+         id="name"  name="name" value="{{name}}">
+      </div>
+      <div class="six columns">
+       <label for="degreeInput">Degree</label>
+       <input class="u-full-width" type="text"
+          {{#show}} readonly {{/show}}
+          id="degree" name="degree" value="{{degree}}">
+      </div>
+     </div>
+     <div class="row">
+      <div class="six columns">
+       <label for="emailInput">Email</label>
+       <input class="u-full-width" type="email"
+          {{#show}} readonly {{/show}}
+          id="email" name="email" value="{{email}}">
+      </div>
+      <div class="six columns">
+       <label for="phoneInput">Phone</label>
+       <input class="u-full-width" type="tel"
+         {{#show}} readonly {{/show}}
+         id="phone" name="phone" value="{{phone}}">
+      </div>
+      <a class="button button-primary" href="/professor"
+	    data-navigo>Back</a>
+     {{#edit}}
+	   <a class="button button-primary" style="float: right" 
+	     data-navigo href="/professor/update/{{id}}">Update</a>
+	 {{/edit}}
+     {{#create}}
+	  <input type="hidden" name="_method" value="PUT">
+	   <a class="button button-primary" style="float: right" 
+	     data-navigo href="/professor/store">Create</a>
+	 {{/create}}
+     {{/professor}}
+    </form>
+   </div>
+  </div>

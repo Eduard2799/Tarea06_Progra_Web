@@ -1,0 +1,23 @@
+  <div class="row">
+   <div style="margin-top: 10%">
+     <h2>{{title}}</h2>
+     <table><thead>
+      <tr><th>Name</th><th>Degree</th><th>Email</th>
+          <th>Phone</th><th>Actions</th></th></tr>
+      </thead><tbody>
+      {{#professors}}
+      <tr><td>{{name}}</td>
+      <td>{{degree}}</td>
+      <td>{{email}}</td>
+      <td>{{phone}}</td>
+      <td>
+      <a class="button" href="/professor/show/{{id}}" data-navigo>Show</a>
+      <a class="button" href="/professor/edit/{{id}}" data-navigo>Edit</a>
+      <a class="button" href="/professor/delete/{{id}}" data-navigo>Erase</a>
+      </td>
+      </tr>
+      {{/professors}}</tbody>
+     </table>
+     <a class="button button-primary" href="/professor/create" data-navigo>New</a>
+   </div>
+  </div>

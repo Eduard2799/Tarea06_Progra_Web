@@ -1,0 +1,32 @@
+<div class="row">
+    <div style="margin-top: 10%">
+        <div style="text-align: right;">
+            <a class="button button-primary" href="/editorial/create" data-navigo>New</a>
+        </div>
+        <h2>{{title}}</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Publisher</th>
+                    <th>Country</th>
+                    <th>Founded</th>
+                    <th>Genere</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#editorial_m}}
+                <tr>
+                    <td><a class="button" href="/editorial/show/{{id}}" data-navigo>{{publisher}}</a></td>
+                    <td>{{country}}</td>
+                    <td>{{founded}}</td>
+                    <td>{{genere}}</td>
+                    <td>
+                        <a class="button" href="/editorial/edit/{{id}}" data-navigo>Edit</a>
+                        <a class="button" href="/editorial/delete/{{id}}" data-navigo>Erase</a>
+                    </td>
+                </tr>
+                {{/editorial_m}}</tbody>
+        </table>
+    </div>
+</div>

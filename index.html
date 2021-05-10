@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+
+    <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+
+    <!-- Javascript
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+    <script type="text/javascript" src="js/mustache.min.js"></script>
+    <script type="text/javascript" src="js/navigo.min.js"></script>
+    <script type="text/javascript" src="js/view.min.js"></script>
+    <script type="text/javascript" src="js/input.min.js"></script>
+
+    <script type="text/javascript" src="controllers/ProfessorController.js">
+    </script>
+    <script type="text/javascript" src="controllers/AutorController.js">
+    </script>
+    <script type="text/javascript" src="controllers/EditorialController.js">
+    </script>
+    <script type="text/javascript" src="controllers/LibroController.js">
+    </script>
+
+</head>
+
+<body>
+    <div class="container">
+        <table>
+            <tbody>
+                <tr>
+                    <td><a class="dropdown-item" href="/libro" data-navigo>Libros</a></td>
+                    <td><a class="dropdown-item" href="/autor" data-navigo>Autores</a></td>
+                    <td><a class="dropdown-item" href="/editorial" data-navigo>Editoriales</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <div class="container" id="content">
+    </div>
+    <!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+<script src="routes.js"></script>
+
+</html>
