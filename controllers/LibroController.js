@@ -27,10 +27,11 @@ class LibroController {
 
     static create() {
         var prof = {
-            'publisher': '',
-            'country': '',
-            'founded': '',
-            'genere': ''
+            'title': '',
+            'edition': '',
+            'copyright': '',
+            'language': '',
+            'pages': ''
         };
         fetch('/server/libro/', { headers: { 'Accept': 'application/json' } })
             .then((response) => response.json())
@@ -38,6 +39,8 @@ class LibroController {
                 return view('/views/libro/details.html', {
                     'title': 'Libro Create',
                     'libro_m': prof,
+                    'autor_m': data[0],
+                    'editorial_m': data[1],
                     'create': true
                 }, 'content')();
             })
@@ -71,7 +74,7 @@ class LibroController {
             .then((data) => {
                 return view('/views/libro/details.html', {
                     'title': 'libro Edit',
-                    'libro_m': data,
+                    'libro_m': data[0],
                     'edit': true
                 }, 'content')();
             })

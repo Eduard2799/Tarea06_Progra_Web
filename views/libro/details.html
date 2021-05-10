@@ -1,7 +1,7 @@
 <div class="row">
     <div class="eleven column" style="margin-top: 10%">
         <h2>{{title}}</h2>
-        {{#editorial_m}}
+        {{#libro_m}}
         <form>
             <div class="row">
                 <div class="six columns">
@@ -28,57 +28,53 @@
                     <label for="pagesInput">Pages</label>
                     <input class="u-full-width" type="text" {{#show}} readonly {{/show}} id="pages" name="pages" value="{{pages}}">
                 </div>
-                <div class="six columns">
-                    <!-- Si es mostrar -->
-                    {{#show}}
-                    <label for="authorInput">Author</label>{{#libro_m}} {{#autor_m}}
-                    <input class="u-full-width" type="text" {{#show}} readonly {{/show}} id="author" name="author" value="{{author}}"> {{/autor_m}} {{/libro_m}}{{/show}}
-                    <!-- Fin si es mostrar-->
-                    <!-- Si no es mostrar-->
-                    {{^show}}
-                    <input type="hidden" id="input_id_author" value="{{author_id}}">
-                    <input type="hidden" id="input_id_publisher" value="{{publisher_id}}"> {{/Libro_m}}
-                    <div class="">
-                        <legend>Author</legend>
-                        <div class="mb-3">
-                            <select class="form-control" name="author_id" id="select_author">
-                        {{#authores_m}}
-                        <option value="{{id}}">{{author}}</option>
-                        {{/authores_m}}
-                    </select>
-                        </div>
-                    </div>
-                    {{~show}}
-                    <!-- Fin si no es mostrar-->
-                </div>
             </div>
+            <input type="hidden" id="input_id_author" value="{{author_id}}">
+            <input type="hidden" id="input_id_publisher" value="{{publisher_id}}">
+            <!--  -->
+            {{/libro_m}}
+            <h3>Aditional information</h3>
             <div class="row">
                 <div class="six columns">
                     <!-- Si es mostrar -->
-                    {{#show}}
-                    <label for="publisherInput">Publisher</label>{{#libro_m}} {{#editorial_m}}
-                    <input class="u-full-width" type="text" {{#show}} readonly {{/show}} id="publisher" name="publisher" value="{{publisher}}"> {{/editorial_m}} {{/libro_m}} {{/show}}
-                    <!-- Fin si es mostrar-->
+                    {{#show}} {{#editorial_m}}
+                    <label for="publisherInput">Publisher</label>
+                    <input class="u-full-width" type="text" {{#show}} readonly {{/show}} id="publisher" name="publisher" value="{{publisher}}"> {{/editorial_m}}{{/show}}
+                    <!-- Si no es mostrar -->
                     {{^show}}
                     <div class="">
-                        <legend>publisher</legend>
-                        <div class="mb-3">
-                            <select class="form-control" name="publisher_id" id="select_publisher">
-                        {{#publisher_m}}
-                        <option value="{{id}}">{{publisher}}</option>
-                        {{/publisher_m}}
-                    </select>
-                        </div>
+                        <legend>Publisher</legend>
+                        <select class="form-control" name="publisher_id" id="select_publisher">
+                            {{#editorial_m}}
+                            <option value="{{id}}">{{publisher}}</option>
+                            {{/editorial_m}}
+                        </select>
                     </div>
-                    {{~show}}
-                    <!-- Si no es mostrar-->
-
+                    {{/show}}
+                </div>
+                <div class="six columns">
+                    <!-- Si es mostrar -->
+                    {{#show}} {{#autor_m}}
+                    <label for="publisherInput">Author</label>
+                    <input class="u-full-width" type="text" {{#show}} readonly {{/show}} id="author" name="author" value="{{author}}"> {{/autor_m}}{{/show}}
+                    <!-- Si no es mostrar -->
+                    {{^show}}
+                    <div class="">
+                        <legend>Author</legend>
+                        <select class="form-control" name="author_id" id="select_author">
+                            {{#author_m}}
+                            <option value="{{id}}">{{author}}</option>
+                            {{/author_m}}
+                        </select>
+                    </div>
+                    {{/show}}
                 </div>
             </div>
-            <a class="button button-primary" href="/editorial" data-navigo>Back</a> {{#edit}}
-            <a class="button button-primary" style="float: right" data-navigo href="/editorial/update/{{id}}">Update</a> {{/edit}} {{#create}}
+
+            <a class="button button-primary" href="/libro" data-navigo>Back</a> {{#edit}}{{#libro_m}}
+            <a class="button button-primary" style="float: right" data-navigo href="/libro/update/{{id}}">Update</a> {{/libro_m}}{{/edit}} {{#create}}
             <input type="hidden" name="_method" value="PUT">
-            <a class="button button-primary" style="float: right" data-navigo href="/editorial/store">Create</a> {{/create}} {{/editorial_m}}
+            <a class="button button-primary" style="float: right" data-navigo href="/libro/store">Create</a> {{/create}}
         </form>
     </div>
 </div>
