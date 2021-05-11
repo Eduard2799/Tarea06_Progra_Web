@@ -1,0 +1,34 @@
+<div class="row">
+    <div style="margin-top: 0%">
+        <div style="text-align: right;">
+            <a class="button button-primary" href="/libro/create" data-navigo>New</a>
+        </div>
+        <h2>{{title}}</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Edition</th>
+                    <th>Copyright</th>
+                    <th>Language</th>
+                    <th>Pages</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#libro_m}}
+                <tr>
+                    <td><a class="button" href="/libro/show/{{id}}" data-navigo>{{title}}</a></td>
+                    <td>{{edition}}</td>
+                    <td>{{copyright}}</td>
+                    <td>{{language}}</td>
+                    <td>{{pages}}</td>
+                    <td>
+                        <a class="button" href="/libro/edit/{{id}}" data-navigo>Edit</a>
+                        <a class="button" href="/libro/delete/{{id}}" data-navigo>Erase</a>
+                    </td>
+                </tr>
+                {{/libro_m}}</tbody>
+        </table>
+    </div>
+</div>

@@ -13,7 +13,6 @@ class LibroController extends Controller {
   public function create(){
     $authores_m = AutorModel::all();
     $editorials_m = EditorialModel::all();
-    
     return [$authores_m, $editorials_m];
   }
   
@@ -34,7 +33,7 @@ class LibroController extends Controller {
     $authores_m = AutorModel::all();
     $editorials_m = EditorialModel::all();  
     
-    return [$libro_m,$authores_m,$editorials_m, "Hola"];
+    return [$libro_m,$authores_m,$editorials_m];
   }
 
   

@@ -3,6 +3,10 @@
 
 <head>
 
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+
     <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,14 +25,10 @@
     <script type="text/javascript" src="js/view.min.js"></script>
     <script type="text/javascript" src="js/input.min.js"></script>
 
-    <script type="text/javascript" src="controllers/ProfessorController.js">
-    </script>
-    <script type="text/javascript" src="controllers/AutorController.js">
-    </script>
-    <script type="text/javascript" src="controllers/EditorialController.js">
-    </script>
-    <script type="text/javascript" src="controllers/LibroController.js">
-    </script>
+    <script type="text/javascript" src="controllers/ProfessorController.js"></script>
+    <script type="text/javascript" src="controllers/AutorController.js"></script>
+    <script type="text/javascript" src="controllers/EditorialController.js"></script>
+    <script type="text/javascript" src="controllers/LibroController.js"></script>
 
 </head>
 
@@ -52,5 +52,23 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
 <script src="routes.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        setTimeout(
+            () => {
+                if ($('#input_id_author').val() && $('#input_id_publisher').val()) {
+                    $("#select_author option[value=" + $('#input_id_author').val() + "]").prop("selected", true);
+                    $("#select_publisher option[value=" + $('#input_id_publisher').val() + "]").prop("selected", true);
+                    // alert("hola");
+                }
+                // var id_author = $("#input_id_author").val()
+                // $("#select_author option[value=" + id_author + "]").attr("selected", true);
+
+                // var id_publisher = $("#input_id_publisher").val()
+                // $("#select_publisher option[value=" + id_publisher + "]").attr("selected", true);
+            }, 2000
+        );
+    });
+</script>
 
 </html>

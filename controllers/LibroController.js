@@ -33,13 +33,15 @@ class LibroController {
             'language': '',
             'pages': ''
         };
-        fetch('/server/libro/', { headers: { 'Accept': 'application/json' } })
+        fetch('/server/libro/create', {
+                headers: { 'Accept': 'application/json' },
+            })
             .then((response) => response.json())
             .then((data) => {
                 return view('/views/libro/details.html', {
-                    'title': 'Libro Create',
+                    'title': 'Book Create',
                     'libro_m': prof,
-                    'autor_m': data[0],
+                    'author_m': data[0],
                     'editorial_m': data[1],
                     'create': true
                 }, 'content')();
@@ -48,15 +50,21 @@ class LibroController {
     }
 
     static store() {
-        var publisher = Input.get('publisher');
-        var country = Input.get('country');
-        var founded = Input.get('founded');
-        var genere = Input.get('genere');
+        var title = Input.get('title');
+        var edition = Input.get('edition');
+        var copyright = Input.get('copyright');
+        var language = Input.get('language');
+        var pages = Input.get('pages');
+        var publisher_id = Input.get('select_publisher');
+        var author_id = Input.get('select_author');
         var prof = {
-            'publisher': publisher,
-            'country': country,
-            'founded': founded,
-            'genere': genere
+            'title': title,
+            'edition': edition,
+            'copyright': copyright,
+            'language': language,
+            'pages': pages,
+            'publisher_id': publisher_id,
+            'author_id': author_id
         };
         fetch('/server/libro', {
                 headers: { 'Content-Type': 'application/json' },
@@ -69,13 +77,14 @@ class LibroController {
     }
 
     static edit(params) {
-        fetch('/server/libro/' + params.id, { headers: { 'Accept': 'application/json' } })
+        fetch('/server/libro/' + params.id + '/edit', { headers: { 'Accept': 'application/json' } })
             .then((response) => response.json())
             .then((data) => {
+                // console.log(data);
                 return view('/views/libro/details.html', {
                     'title': 'Libro Edit',
                     'libro_m': data[0],
-                    'autor_m': data[1],
+                    'author_m': data[1],
                     'editorial_m': data[2],
                     'edit': true
                 }, 'content')();
@@ -83,15 +92,21 @@ class LibroController {
     }
 
     static update(params) {
-        var publisher = Input.get('publisher');
-        var country = Input.get('country');
-        var founded = Input.get('founded');
-        var genere = Input.get('genere');
+        var title = Input.get('title');
+        var edition = Input.get('edition');
+        var copyright = Input.get('copyright');
+        var language = Input.get('language');
+        var pages = Input.get('pages');
+        var publisher_id = Input.get('select_publisher');
+        var author_id = Input.get('select_author');
         var prof = {
-            'publisher': publisher,
-            'country': country,
-            'founded': founded,
-            'genere': genere
+            'title': title,
+            'edition': edition,
+            'copyright': copyright,
+            'language': language,
+            'pages': pages,
+            'publisher_id': publisher_id,
+            'author_id': author_id
         };
         fetch('/server/libro/' + params.id, {
                 headers: { 'Content-Type': 'application/json' },
