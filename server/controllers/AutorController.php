@@ -30,7 +30,7 @@ class AutorController extends Controller {
   }  
   
   public function destroy($id) {  
-    return AutorModel::destroy($id);
+    AutorModel::destroy($id);
   }
 }
 ?>

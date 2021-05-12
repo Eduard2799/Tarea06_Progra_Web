@@ -30,7 +30,7 @@ class EditorialController extends Controller {
   }  
   
   public function destroy($id) {  
-    return EditorialModel::destroy($id);
+    EditorialModel::destroy($id);
   }
 }
 ?>

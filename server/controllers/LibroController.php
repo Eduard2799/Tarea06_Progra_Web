@@ -42,7 +42,7 @@ class LibroController extends Controller {
   }  
   
   public function destroy($id) {  
-    return LibroModel::destroy($id);
+    LibroModel::destroy($id);
   }
 }
 ?>
