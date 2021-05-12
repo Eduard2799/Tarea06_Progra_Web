@@ -80,11 +80,12 @@ class AutorController {
             'author': author,
             'nationality': nationality,
             'birth_year': birth_year,
-            'fields': fields
+            'fields': fields,
+            '_method': 'PUT'
         };
         fetch('/server/autor/' + params.id, {
                 headers: { 'Content-Type': 'application/json' },
-                method: 'PUT',
+                method: 'POST',
                 body: JSON.stringify(prof)
             })
             .then((data) => {
@@ -93,7 +94,11 @@ class AutorController {
     }
 
     static destroy(params) {
-        fetch('/server/autor/' + params.id, { method: 'DELETE' })
+        fetch('/server/autor/' + params.id, {
+                headers: { 'Content-Type': 'application/json' },
+                method: 'POST',
+                body: JSON.stringify({ '_method': 'DELETE' })
+            })
             .then((data) => {
                 router.navigate('/autor');
             })

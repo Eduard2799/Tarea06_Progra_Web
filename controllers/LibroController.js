@@ -106,11 +106,12 @@ class LibroController {
             'language': language,
             'pages': pages,
             'publisher_id': publisher_id,
-            'author_id': author_id
+            'author_id': author_id,
+            '_method': 'PUT'
         };
         fetch('/server/libro/' + params.id, {
                 headers: { 'Content-Type': 'application/json' },
-                method: 'PUT',
+                method: 'POST',
                 body: JSON.stringify(prof)
             })
             .then((data) => {
@@ -119,9 +120,12 @@ class LibroController {
     }
 
     static destroy(params) {
-        fetch('/server/libro/' + params.id, { method: 'DELETE' })
-            .then((data) => {
-                router.navigate('/libro');
-            })
+        fetch('/server/libro/' + params.id, {
+            headers: { 'Content-Type': 'application/json' },
+            method: 'POST',
+            body: JSON.stringify({ '_method': 'DELETE' })
+        }).then((data) => {
+            router.navigate('/libro');
+        })
     }
 }

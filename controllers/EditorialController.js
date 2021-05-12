@@ -80,7 +80,8 @@ class EditorialController {
             'publisher': publisher,
             'country': country,
             'founded': founded,
-            'genere': genere
+            'genere': genere,
+            '_method': 'PUT'
         };
         fetch('/server/editorial/' + params.id, {
                 headers: { 'Content-Type': 'application/json' },
@@ -93,9 +94,12 @@ class EditorialController {
     }
 
     static destroy(params) {
-        fetch('/server/editorial/' + params.id, { method: 'DELETE' })
-            .then((data) => {
-                router.navigate('/editorial');
-            })
+        fetch('/server/editorial/' + params.id, {
+            headers: { 'Content-Type': 'application/json' },
+            method: 'POST',
+            body: JSON.stringify({ '_method': 'DELETE' })
+        }).then((data) => {
+            router.navigate('/editorial');
+        })
     }
 }
